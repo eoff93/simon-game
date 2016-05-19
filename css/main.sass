@@ -1,0 +1,73 @@
+/*
+  Mixins
+/*
+=border($top, $right, $bot, $left)
+  border-top: $top solid #333
+  border-right: $right solid #333
+  border-bottom: $bot solid #333
+  border-left: $left solid #333
+
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+=border-radius-ind($tl, $tr, $br, $bl)
+  -webkit-border-radius: $tl $tr $br $bl
+  -moz-border-radius:    $tl $tr $br $bl
+  -ms-border-radius:     $tl $tr $br $bl
+  border-radius:         $tl $tr $br $bl
+
+/*
+  Styling
+/*
+body
+  color: #eee
+  padding-top: 20px
+  font-family: Georgia, serif
+  box-sizing: border-box
+  background-color: #556270
+
+h1
+  font-size: 48px
+
+.game
+  margin-top: 50px
+  height: 360px
+  width: 360px
+
+.slice
+  height: 180px
+  cursor: pointer
+
+#green
+  +border(15px, 6px, 6px, 15px)
+  +border-radius-ind(180px, 7px, 0, 7px)
+  background-color: #00A74A
+
+#red
+  +border(15px, 15px, 6px, 6px)
+  +border-radius-ind(7px, 180px, 7px, 0)
+  background-color: #9F0F17
+
+#yellow
+  +border(6px, 6px, 15px, 15px)
+  +border-radius-ind(7px, 0, 7px, 180px)
+  background-color: #CCA707
+
+#blue
+  +border(6px, 15px, 15px, 6px)
+  +border-radius-ind(0, 7px, 180px, 7px)
+  background-color: #094A8F
+
+main
+  margin-bottom: 30px
+
+.controls
+  +border-radius(20px)
+  background-color: #333
+  width: 240px
+  margin: 0 auto
+  padding: 20px
+  margin-bottom: 20px
