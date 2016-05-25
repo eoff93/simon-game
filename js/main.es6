@@ -52,7 +52,7 @@ function patternBlink(simonValue) {
         setTimeout(() => {
           soundIndex = slices.indexOf(simonValue[i]);
           sounds[soundIndex].play();
-          $(`# + ${simonValue[i]}`).fadeOut(150).fadeIn(150);
+          $('#' + simonValue[i]).fadeOut(150).fadeIn(150);
         }, i * 800);
       })(i);
     }
