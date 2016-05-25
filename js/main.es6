@@ -121,7 +121,7 @@ function reset() {
 }
 
 
-$('#start').on('click', () => {
+$('#start').on('click', function startReset() {
   if ($(this).html() === 'Start') {
     $('#msg').html('Round 1');
     simon = [];

@@ -122,11 +122,11 @@ function reset() {
   index = 0;
 }
 
-$('#start').on('click', function () {
-  if ($(undefined).html() === 'Start') {
+$('#start').on('click', function startReset() {
+  if ($(this).html() === 'Start') {
     $('#msg').html('Round 1');
     simon = [];
-    $(undefined).html('Reset');
+    $(this).html('Reset');
     color = slices[Math.floor(Math.random() * (3 + 1))];
     simon.push(color);
     patternBlink(simon);
