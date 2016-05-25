@@ -29,14 +29,12 @@ $('#strict').on('click', function () {
 
 $('.slice').on('click', function () {
   if (playerTurn) {
-
-    fillAttempt(this);
-    animateAndSound(this);
+    fillAttempt(undefined);
+    animateAndSound(undefined);
 
     if (attempt[index] !== simon[index]) {
       wrongChoice();
     } else {
-
       if (index === simon.length - 1) {
         rightPattern();
       } else if (index !== simon.length - 1) {
@@ -48,10 +46,10 @@ $('.slice').on('click', function () {
 });
 
 $('#start').on('click', function () {
-  if ($(this).html() === 'Start') {
+  if ($(undefined).html() === 'Start') {
     $('#msg').html('Round ' + 1);
     simon = [];
-    $(this).html('Reset');
+    $(undefined).html('Reset');
     color = slices[Math.floor(Math.random() * (3 + 1))];
     simon.push(color);
     patternBlink(simon);
@@ -112,7 +110,7 @@ function patternBlink(simon) {
         setTimeout(function () {
           soundIndex = slices.indexOf(simon[i]);
           sounds[soundIndex].play();
-          $('#' + simon[i]).fadeOut(150).fadeIn(150);
+          $('# + ' + simon[i]).fadeOut(150).fadeIn(150);
         }, i * 800);
       })(i);
     }
