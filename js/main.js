@@ -47,14 +47,14 @@ function lostStrict() {
   playerTurn = false;
 }
 
-function patternBlink(simon) {
+function patternBlink(simonValue) {
   setTimeout(function () {
-    for (var i = 0; i < simon.length; i++) {
+    for (var i = 0; i < simonValue.length; i++) {
       (function (i) {
         setTimeout(function () {
-          soundIndex = slices.indexOf(simon[i]);
+          soundIndex = slices.indexOf(simonValue[i]);
           sounds[soundIndex].play();
-          $('# + ' + simon[i]).fadeOut(150).fadeIn(150);
+          $('# + ' + simonValue[i]).fadeOut(150).fadeIn(150);
         }, i * 800);
       })(i);
     }
@@ -75,8 +75,8 @@ function wrongChoice() {
   }
 }
 
-function checkVictory(level) {
-  if (level === 21) {
+function checkVictory(round) {
+  if (round === 21) {
     $('#msg').html('YOU DID IT! Great job!');
     playerTurn = false;
   }
