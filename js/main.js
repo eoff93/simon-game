@@ -8,6 +8,7 @@ var color = '';
 var playerTurn = false;
 var soundIndex = void 0;
 var strict = false;
+var slices = ['green', 'red', 'yellow', 'blue'];
 
 var greenSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3');
 var redSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
@@ -24,37 +25,6 @@ $('#strict').on('click', function () {
   } else {
     strict = false;
     $('#strict-mode').html('');
-  }
-});
-
-$('.slice').on('click', function () {
-  if (playerTurn) {
-    fillAttempt(undefined);
-    animateAndSound(undefined);
-
-    if (attempt[index] !== simon[index]) {
-      wrongChoice();
-    } else {
-      if (index === simon.length - 1) {
-        rightPattern();
-      } else if (index !== simon.length - 1) {
-        // if right choice but there's more to the pattern
-        index++;
-      }
-    }
-  }
-});
-
-$('#start').on('click', function () {
-  if ($(undefined).html() === 'Start') {
-    $('#msg').html('Round ' + 1);
-    simon = [];
-    $(undefined).html('Reset');
-    color = slices[Math.floor(Math.random() * (3 + 1))];
-    simon.push(color);
-    patternBlink(simon);
-  } else {
-    reset();
   }
 });
 
@@ -77,6 +47,21 @@ function lostStrict() {
   playerTurn = false;
 }
 
+function patternBlink(simon) {
+  setTimeout(function () {
+    for (var i = 0; i < simon.length; i++) {
+      (function (i) {
+        setTimeout(function () {
+          soundIndex = slices.indexOf(simon[i]);
+          sounds[soundIndex].play();
+          $('# + ' + simon[i]).fadeOut(150).fadeIn(150);
+        }, i * 800);
+      })(i);
+    }
+  }, 1000);
+  playerTurn = true;
+}
+
 // -----------------------------
 function wrongChoice() {
   if (strict) {
@@ -87,6 +72,13 @@ function wrongChoice() {
     patternBlink(simon);
     index = 0;
     attempt = [];
+  }
+}
+
+function checkVictory(level) {
+  if (level === 21) {
+    $('#msg').html('YOU DID IT! Great job!');
+    playerTurn = false;
   }
 }
 
@@ -103,20 +95,22 @@ function rightPattern() {
   patternBlink(simon);
 }
 
-function patternBlink(simon) {
-  setTimeout(function () {
-    for (var i = 0; i < simon.length; i++) {
-      (function (i) {
-        setTimeout(function () {
-          soundIndex = slices.indexOf(simon[i]);
-          sounds[soundIndex].play();
-          $('# + ' + simon[i]).fadeOut(150).fadeIn(150);
-        }, i * 800);
-      })(i);
+$('.slice').on('click', function () {
+  if (playerTurn) {
+    fillAttempt(undefined);
+    animateAndSound(undefined);
+    if (attempt[index] !== simon[index]) {
+      wrongChoice();
+    } else {
+      if (index === simon.length - 1) {
+        rightPattern();
+      } else if (index !== simon.length - 1) {
+        // if right choice but there's more to the pattern
+        index++;
+      }
     }
-  }, 1000);
-  playerTurn = true;
-}
+  }
+});
 
 function reset() {
   $('#start').html('Start');
@@ -128,9 +122,15 @@ function reset() {
   index = 0;
 }
 
-function checkVictory(level) {
-  if (level === 21) {
-    $('#msg').html('YOU DID IT! Great job!');
-    playerTurn = false;
+$('#start').on('click', function () {
+  if ($(undefined).html() === 'Start') {
+    $('#msg').html('Round 1');
+    simon = [];
+    $(undefined).html('Reset');
+    color = slices[Math.floor(Math.random() * (3 + 1))];
+    simon.push(color);
+    patternBlink(simon);
+  } else {
+    reset();
   }
-}
+});
