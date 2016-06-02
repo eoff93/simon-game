@@ -97,8 +97,8 @@ function rightPattern() {
 
 $('.slice').on('click', function () {
   if (playerTurn) {
-    fillAttempt(undefined);
-    animateAndSound(undefined);
+    fillAttempt(this);
+    animateAndSound(this);
     if (attempt[index] !== simon[index]) {
       wrongChoice();
     } else {

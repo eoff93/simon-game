@@ -93,7 +93,7 @@ function rightPattern() {
   patternBlink(simon);
 }
 
-$('.slice').on('click', () => {
+$('.slice').on('click', function()  {
   if (playerTurn) {
     fillAttempt(this);
     animateAndSound(this);
