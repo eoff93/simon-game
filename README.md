@@ -12,4 +12,4 @@ Made for freecodecamp Front End certification.
 
 `git clone https://github.com/eoff93/simon-game.git`
 
-Open `index.html` in a browser.
+Or check out the [preview] (http://htmlpreview.github.io/?https://github.com/eoff93/simon-game/blob/master/index.html)
